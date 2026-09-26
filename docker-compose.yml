@@ -1,0 +1,28 @@
+version: "3.7" # docker-composeの書式のバージョン
+
+services: # 以下にサーバ情報を記載
+  db: # データベースサーバ（MySql）名（任意の名前を指定可）
+    image: mysql:8.0 # 使用するデータベースのイメージ名とバージョン(https://hub.docker.com/_/mysql)
+    restart: always # PC再起動時などDocker自体が起動したときにこのサーバも自動で起動するよう設定
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    env_file:
+      - .env
+
+  ap: # アプリケーションサーバ（PHP,WordPress）名（任意の名前を指定可）
+    image: wordpress:latest # 使用するWordPressのイメージ名とバージョン(latestは最新を表す https://hub.docker.com/_/wordpress)
+    restart: always # PC再起動時などDocker自体が起動したときにこのサーバも自動で起動するよう設定
+    depends_on: # 先に起動させるサーバを指定
+      - db
+    ports:
+      - "127.0.0.1:8000:80" # アプリケーションサーバの80番ポートをローカルの8000番ポートにつなげる（http://localhost:8000 でアクセスできるようになる。外部からは接続不可）
+    volumes:
+      - app_data:/var/www/html
+    env_file:
+      - .env
+
+volumes:
+  db_data:
+  app_data:

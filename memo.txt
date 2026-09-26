@@ -1,0 +1,7 @@
+■customize_add_css
+ダッシュボード >　外観 > カスタマイズ >追加CSS
+
+■visual_portfolio_custom_css
+
+固定ページ > 各ページ > Visual Portfolio をクリック
+Custom CSS をクリック

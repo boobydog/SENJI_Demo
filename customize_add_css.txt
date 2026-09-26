@@ -1,0 +1,84 @@
+/*  独自追加 2026 */
+/*タイトル*/
+.site-header {
+  top: 10px;
+
+}
+
+/* サブメニュー全体を左側に固定 */
+.secondary-navigation {
+  position: fixed !important;
+  top: 135px;      /* ヘッダーと重ならないよう調整 */
+ left: 50px;
+ width: 150px !important;     /* ← ここは効いている */
+  max-width: 150px !important;
+  z-index: 999;
+  background: transparent;
+  text-align: left !important; /* 中央寄せを解除 */
+	font-weight:lighter;
+}
+
+/* ul 自体の中央寄せを解除 */
+.secondary-navigation ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+
+/* サブメニューを縦並びに変更 */
+.secondary-navigation ul.menu {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* 左寄せ */
+  gap: 40px;
+}
+
+/* 各メニュー項目の左寄せ */
+.secondary-navigation ul.menu > li {
+  text-align: left !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+/* サブメニュー項目の見た目調整（任意） */
+.secondary-navigation ul.menu > li > a {
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+
+  text-align: left !important;
+  display: block !important;
+  width: 100% !important;
+}
+/* メニューをホバーした時の色 */
+.secondary-navigation ul.menu > li > a:hover {
+  color: #333;
+}
+
+/* 該当ページのリンクを無効化色変更 */
+.current-menu-item > a,
+.current_page_item > a {
+    color: black; 
+	  pointer-events: none;
+    cursor: default;
+}
+
+/* 左上の各ページのサブタイトルを非表示 */
+.entry-title{
+  display: none;
+}
+
+/* スマホでは非表示（任意） */
+@media (max-width: 768px) {
+  .secondary-navigation {
+    display: none !important;
+  }
+}

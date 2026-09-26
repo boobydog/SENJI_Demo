@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/sql:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - "127.0.0.1:3306:3306"
+    env_file:
+      - .env
+    command: ["mysqld"]
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "127.0.0.1:8000:80"
+    restart: always
+    env_file:
+      - .env
+volumes:
+  db_data:
